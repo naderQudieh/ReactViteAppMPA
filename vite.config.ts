@@ -30,7 +30,7 @@ export default defineConfig({
         minify: 'esbuild',
 
         rollupOptions: {
-            external: ['react', 'react-dom',"tailwindcss", "postcss"],
+            external: [ ],
             output: {
                 // For entry chunks (main JavaScript files)
                 entryFileNames: ({ name }) => {
@@ -61,8 +61,10 @@ export default defineConfig({
                 }
             },
             input: {
-                dashboard: resolve(root, 'pages/dashboard/', 'index.html'),
-                home: path.resolve(root, 'pages/home/', 'index.html'), 
+                main: resolve(__dirname, 'index.html'),
+                dashboard: resolve(__dirname, 'dashboard.html')
+               // dashboard: resolve(root, 'pages/dashboard/', 'index.html'),
+               // home: path.resolve(root, 'pages/home/', 'index.html'), 
             },
 
         }
@@ -75,6 +77,6 @@ export default defineConfig({
             usePolling: true
         },
         port: 3000,
-        open: '/src/pages/home/index.html', // Critical path fix
+        open: '/', // Critical path fix
     }
 })

@@ -10,8 +10,9 @@ export default function Header() {
                 <div id="loading">  </div>
             </div>
             <nav> 
-                <a href="/src/pages/home/index.html" style={{ color: 'white', marginRight: '1rem' }}>Home</a>
-                <a href="/src/pages/dashboard/index.html" style={{ color: 'white' }}>Dashboard</a>
+                <a href="/index.html" style={{ color: 'white', marginRight: '1rem' }}> Home </a>
+                <a href="/dashboard.html" style={{ color: 'white' }}> Dashboard </a>
+                
             </nav>
         </header>
     )
