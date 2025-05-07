@@ -1,30 +1,32 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
- 
+import path, { resolve } from 'path'
+const root = resolve(__dirname, 'src');
 export default defineConfig({
+    base: "/",
     plugins: [react()],
     resolve: {
 
-        alias: {
-
-            '@': resolve('src'),
-            '@img': resolve('src/assets/img'),
-            '@less': resolve('src/assets/less'),
-            '@libs': resolve('src/libs'),
-            '@cp': resolve('src/components'),
-            '@views': resolve('src/views'),
-            '~@': resolve('src'),
-            '~@img': resolve('src/assets/img'),
-            '~@less': resolve('src/assets/less'),
-            '~@libs': resolve('src/libs'),
-            '~@cp': resolve('src/components'),
-            '~@views': resolve('src/views'),
+        alias: { 
+            //'@': resolve('src'),
+            //'@img': resolve('src/assets/img'),
+            //'@less': resolve('src/assets/less'),
+            //'@libs': resolve('src/libs'),
+            //'@cp': resolve('src/components'),
+            //'@views': resolve('src/views'),
+            //'~@': resolve('src'),
+            //'~@img': resolve('src/assets/img'),
+            //'~@less': resolve('src/assets/less'),
+            //'~@libs': resolve('src/libs'),
+            //'~@cp': resolve('src/components'),
+            //'~@views': resolve('src/views'),
         },
     },
     build: {
+        emptyOutDir: true,
+        outDir: path.join(__dirname, "dist"),
         target: 'modules',
-        outDir: 'dist',
+        
         minify: 'esbuild',
 
         rollupOptions: {
@@ -59,19 +61,20 @@ export default defineConfig({
                 }
             },
             input: {
-                home: resolve(__dirname, 'src/pages/home/index.html'),
-                dashboard: resolve(__dirname, 'src/pages/dashboard/index.html')
+                dashboard: resolve(root, 'pages/dashboard/', 'index.html'),
+                home: path.resolve(root, 'pages/home/', 'index.html'), 
             },
 
         }
     },
     server: {
+       
         host: 'localhost',
         hmr: { host: 'localhost' }, 
         watch: {
             usePolling: true
         },
         port: 3000,
-        open: 'index.html', // Critical path fix
+        open: '/src/pages/home/index.html', // Critical path fix
     }
 })
